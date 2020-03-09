@@ -5,8 +5,6 @@
         "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
         "tenant_id": "{{env `ARM_TENANT_ID`}}",
         "object_id": "{{env `ARM_OBJECT_ID`}}",
-        "resource_group": "{{env `ARM_RESOURCE_GROUP`}}",
-        "storage_account": "{{env `ARM_STORAGE_ACCOUNT`}}",
         "temp_resource_group_name": "{{env `TEMP_RESOURCE_GROUP_NAME`}}",
         "location": "{{env `ARM_RESOURCE_LOCATION`}}",
         "ssh_password": "{{env `SSH_PASSWORD`}}",
@@ -16,6 +14,8 @@
         "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
         "vm_size": "Standard_D4_v2",
         "run_scan_antivirus": "false",
+        "managed_image_resource_group_name": "RG",
+        "managed_image_name": "id",
 
         "root_folder": "C:",
         "toolset_json_path": "{{env `TEMP`}}\\toolset.json",
@@ -36,7 +36,6 @@
     "sensitive-variables": ["install_password", "ssh_password", "client_secret", "github_feed_token"],
     "builders": [
         {
-            "name": "vhd",
             "type": "azure-arm",
             "client_id": "{{user `client_id`}}",
             "client_secret": "{{user `client_secret`}}",
@@ -46,11 +45,7 @@
             "os_disk_size_gb": "256",
             "location": "{{user `location`}}",
             "vm_size": "{{user `vm_size`}}",
-            "resource_group_name": "{{user `resource_group`}}",
-            "storage_account": "{{user `storage_account`}}",
             "temp_resource_group_name": "{{user `temp_resource_group_name`}}",
-            "capture_container_name": "images",
-            "capture_name_prefix": "{{user `capture_name_prefix`}}",
             "virtual_network_name": "{{user `virtual_network_name`}}",
             "virtual_network_resource_group_name": "{{user `virtual_network_resource_group_name`}}",
             "virtual_network_subnet_name": "{{user `virtual_network_subnet_name`}}",
@@ -62,7 +57,9 @@
             "communicator": "winrm",
             "winrm_use_ssl": "true",
             "winrm_insecure": "true",
-            "winrm_username": "packer"
+            "winrm_username": "packer",
+            "managed_image_resource_group_name": "{{user `managed_image_resource_group_name`}}",
+            "managed_image_name": "{{user `managed_image_name`}}"
         }
     ],
     "provisioners": [
