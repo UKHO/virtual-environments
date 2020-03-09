@@ -4,6 +4,7 @@ param()
 . $PSScriptRoot\PathHelpers.ps1
 . $PSScriptRoot\InstallHelpers.ps1
 . $PSScriptRoot\MarkdownHelpers.ps1
+. $PSScriptRoot\InstallChoco.ps1
 
 Export-ModuleMember -Function @(
     'Test-MachinePath'
@@ -19,4 +20,5 @@ Export-ModuleMember -Function @(
     'Stop-SvcWithErrHandling'
     'Set-SvcWithErrHandling'
     'Get-VS19ExtensionVersion'
+    'Install-Choco'
 )
