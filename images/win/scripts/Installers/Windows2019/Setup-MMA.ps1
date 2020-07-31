@@ -1,6 +1,6 @@
 #Remove the duplicated SourceComputerId
 #1.	Stop the ‘Microsoft Monitoring Agent’ service
-Get-Service "mmaextension*" | Stop-Service
+Get-Service "HealthService" | Stop-Service
 
 #2.	Rename the ‘C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State’ (for example, to ‘C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State.old’)
 Move-Item "C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State" -Destination "C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State.old"
